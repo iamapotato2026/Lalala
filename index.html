@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who Am I? - GetToKnowMeOS</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+<div id="box-3" class="layered-box">
+<div class="closebutton" id="box-3header></div>
+<div class="box-content">
+<p class="box-title">Jack of all trades,master of none;</p>
+<p class="box-text">you're probably confused why this web even exixts, don't worry i have the same doubt too...</p>
+</div>
+</div>
+<div id="box-2" class="layered-box">
+<div class="closebutton" id="box-2header"></div>
+<div class="box-content">
+<p class="box-title">Just an average south Indian girl who loves doing almost everything.</p>
+<p class="box-text">look I'm definitely not letting you out of this page without giving you something. so go the notes app to the right and have your tea. and don't forget to leave for us too*-*</p>
+</div>
+</div>
+    </div>
+    <div id="desktopApps" class="app-icon">
+        <img src="./xyz.jpeg" alt="Diary Icon" class="app-icon-img">
+        <p class="app-icon-label">Notes / Guestbook</p>
+    </div>
+
+    
+    <div id="box-1" class="layered-box">
+        <div class="closebutton" id="box-1header"></div>
+        <span id="timeElement"></span>
+    </div>
+    
+    <div id="box-2" class="layered-box">
+        <div class="closebutton" id="box-2header"></div>
+    </div>
+    
+    <div id="box-3" class="layered-box">
+        <div class="closebutton" id="box-3header"></div>
+    </div>
+
+    <!-- Hero Title -->
+    <div class="top-content">
+        <h1>Who am I?</h1>
+    </div>
+
+    <!-- Bottom Content Bar -->
+    <div class="bottom-content">
+        <h2>"You probably know me for my chaos but I'm pretty sure you've only heard half of it"</h2>
+        <h3>Welcome to my unhinged sidequests</h3>
+        <p id="welcomeopen" class="action-btn">GetToKnowMeOS</p>
+        <a class="social-link" href="https://www.instagram.com/boom_shakalakahehe?stkn=MW84dGYzNHQyeGF4eg==" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+
+    <!-- Modal Window: Welcome -->
+    <div id="welcome" class="layered-box window-popup">
+        <div class="closebutton" id="welcomeheader"></div>
+        <div class="window-body">
+            <p>Hey guys, welcome to my personal interactive space!</p>
+            <p id="welcomeclose" class="action-btn">Close</p>
+        </div>
+    </div>
+
+    <!-- Modal Window: Live Interactive Diary / Guestbook -->
+    <div id="notes" class="layered-box window-popup window-large">
+        <div class="closebutton" id="notesheader"></div>
+        <div class="notes-container">
+            <!-- Left Side: Interactive Input Form -->
+            <div class="notes-input-area">
+                <p style="margin: 0 0 8px 0; font-weight: bold;">Leave a Note about me!</p>
+                <input type="text" id="authorInput" placeholder="Your Name / Handle" class="diary-input" />
+                <textarea id="noteInput" placeholder="Write something cool or unhinged..." class="diary-textarea"></textarea>
+                <button id="postNoteBtn" class="action-btn" style="cursor: pointer;">Post Note</button>
+            </div>
+
+            <!-- Right Side: Live Feed of Visitor Notes -->
+            <div id="notesContent" class="notes-body">
+                <p style="text-align: center; color: #555;">Loading notes...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs for Realtime Database -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    
+    <script src="script.js"></script>
+</body>
+</html>

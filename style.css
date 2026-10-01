@@ -1,0 +1,357 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    /* Custom SVG magnifying glass cursor */
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%231b263b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>') 11 11, auto;
+}
+
+body {
+    background-image: url("./abc.jpeg"); 
+    background-size: cover;
+    background-position: center 35%;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+/* Desktop App Icons */
+.app-icon {
+    position: absolute;
+    top: 64px;
+    left: 16px;
+    z-index: 8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    border-radius: 8px;
+    user-select: none;
+    transition: background 0.2s ease;
+}
+
+.app-icon:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.app-icon.selected {
+    background: rgba(255, 255, 255, 0.4);
+    outline: 2px dashed #1b263b;
+}
+
+.app-icon-img {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+}
+
+.app-icon-label {
+    margin: 4px 0 0 0;
+    color: #ffffff;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+.layered-box {
+    border: 0.5rem outset palevioletred;
+    outline: 0.5rem solid khaki;
+    box-shadow: 0 0 0 1.5rem skyblue;
+    border-radius: 12px;
+    outline-offset: 0.5rem;
+    
+    /* Set min-height instead of fixed height so it grows with text */
+    min-width: 180px;
+    min-height: 100px;
+    height: auto; 
+    
+    position: absolute;
+    z-index: 10; 
+    background: rgba(255, 255, 255, 0.85); /* Increased opacity so text is readable */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-weight: bold;
+    color: #1b263b;
+    box-sizing: border-box;
+    
+    /* Prevents content from overflowing outside the border */
+    overflow: hidden; 
+}
+
+/* Ensure inner content padding accounts for the top-right close button */
+.box-content {
+    padding: 20px 12px 10px 12px; /* Extra top padding so text doesn't hit the close button */
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.box-title {
+    margin: 0 0 4px 0;
+    font-size: 13px;
+    font-weight: bold;
+    color: #1b263b;
+    text-transform: uppercase;
+}
+
+.box-text {
+    margin: 0;
+    font-size: 11px;
+    color: #1b263b;
+    font-weight: 600;
+    line-height: 1.3;
+    word-wrap: break-word;
+}
+
+#box-1 {
+    top: 20%;
+    left: 5%;
+}
+
+#box-2 {
+    top: 5%;
+    right: 5%;
+    width: 180px; 
+    height: 100px;
+}
+
+#box-3 {
+    bottom: 25%;
+    right: 15%;
+    width: 150px; 
+    height: 80px;
+}
+
+/* Modal Popups */
+.window-popup {
+    display: none;
+}
+
+#welcome {
+    top: 35%;
+    left: 35%;
+    width: 320px;
+    height: 180px;
+}
+
+.window-large {
+    width: 500px;
+    height: 320px;
+    top: 20%;
+    left: 28%;
+}
+
+.window-body {
+    padding: 15px;
+    text-align: center;
+}
+
+/* Hero Content */
+.top-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    pointer-events: none;
+}
+
+.bottom-content {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 6rem);
+    max-width: 900px;
+    box-sizing: border-box;
+    z-index: 5;
+}
+
+h1 {
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 160px; 
+    color: #b9d7a8;
+    margin: 0;
+    text-shadow: 
+        2px 2px 0 #1b263b,
+        -2px -2px 0 #1b263b,
+        2px 2px 0 #1b263b,
+        -2px 2px 0 #1b263b,
+        0px 0px 10px rgba(0,0,0,0.5);
+}
+
+h2, h3 {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    color: white;
+    margin: 8px 0;
+    padding: 0 10px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+.action-btn {
+    display: inline-block;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-weight: bold;
+    color: white;
+    background: rgba(27, 38, 59, 0.8);
+    padding: 6px 14px;
+    border-radius: 12px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    transition: transform 0.15s ease;
+}
+
+.action-btn:hover {
+    transform: scale(1.05);
+}
+
+.social-link {
+    display: inline-block;
+    margin-top: 8px;
+    color: azure;
+    font-size: 18px;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: bold;
+    background: rgba(30, 30, 30, 0.7);
+    padding: 6px 16px;
+    border-radius: 20px;
+}
+
+#timeElement {
+    font-size: 20px;
+    color: #1b263b;
+    text-shadow: 0px 0px 2px rgba(255, 255, 255, 0.8);
+}
+
+.closebutton {
+    width: 14px;
+    height: 14px;
+    background-color: #ff5f56;
+    border-radius: 50%;
+    border: 2px solid white;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+}
+
+/* Live Diary App Inputs & Feed Layout */
+.notes-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding-top: 25px;
+    box-sizing: border-box;
+}
+
+.notes-input-area {
+    width: 40%;
+    border-right: 2px solid #1b263b;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-sizing: border-box;
+}
+
+.diary-input, .diary-textarea {
+    width: 100%;
+    border: 1.5px solid #1b263b;
+    border-radius: 6px;
+    padding: 6px;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 12px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.diary-textarea {
+    height: 100px;
+    resize: none;
+}
+
+.notes-body {
+    width: 60%;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-sizing: border-box;
+}
+
+.note-card {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(27, 38, 59, 0.3);
+    border-radius: 8px;
+    padding: 8px;
+    text-align: left;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+}
+
+.note-card-author {
+    font-weight: bold;
+    font-size: 13px;
+    color: #1b263b;
+    margin: 0 0 2px 0;
+}
+
+.note-card-text {
+    font-size: 12px;
+    margin: 0;
+    color: #222;
+    word-break: break-word;
+}
+.box-content {
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.box-title {
+    margin: 0 0 4px 0;
+    font-size: 13px;
+    font-weight: bold;
+    color: #1b263b;
+    text-transform: uppercase;
+}
+
+.box-text {
+    margin: 0;
+    font-size: 11px;
+    color: #222;
+    font-weight: normal;
+    line-height: 1.3;
+}
+.box-content {
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.box-title {
+    margin: 0 0 4px 0;
+    font-size: 13px;
+    font-weight: bold;
+    color: #1b263b;
+    text-transform: uppercase;
+}
+
+.box-text {
+    margin: 0;
+    font-size: 11px;
+    color: #222;
+    font-weight: normal;
+    line-height: 1.3;
+}
