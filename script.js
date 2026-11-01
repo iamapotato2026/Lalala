@@ -1,106 +1,45 @@
-function runClock() {
-    const now = new Date();
-    const h = now.getHours();
-    const m = now.getMinutes();
-    const s = now.getSeconds();
+let date = document.getElementById("date")
+let time = document.getElementById("time")
 
-    const hDeg = (h % 12) * 30 + m * 0.5;
-    const mDeg = m * 6;
-    const sDeg = s * 6;
+function setTime(){
+    let now = new Date()
 
-    const hHand = document.getElementById('hHand');
-    const mHand = document.getElementById('mHand');
-    const sHand = document.getElementById('sHand');
+    let hours = now.getHours()
+    let minutes = now.getMinutes()
+    let seconds = now.getSeconds()
 
-    if (hHand) hHand.style.transform = `translateX(-50%) rotate(${hDeg}deg)`;
-    if (mHand) mHand.style.transform = `translateX(-50%) rotate(${mDeg}deg)`;
-    if (sHand) sHand.style.transform = `translateX(-50%) rotate(${sDeg}deg)`;
+    let day = now.getDay()
+    let month = now.getMonth() + 1
+    let year = now.getFullYear()
 
-    const digClock = document.getElementById('digClock');
-    if (digClock) digClock.innerText = now.toLocaleTimeString();
+    let ampm = hours >= 12 ? "PM" : "AM"
 
-    if (window.alarmTime && window.alarmOn) {
-        const cur = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
-        if (cur === window.alarmTime && s === 0) {
-            alert('alarm ringing');
-            window.alarmOn = false;
-            const msg = document.getElementById('alarmMsg');
-            if (msg) msg.innerText = '';
-        }
+    if(hours < 10) {
+        hours="0" + hours
     }
-}
-setInterval(runClock, 1000);
-runClock();
 
-loadNotes();
-
-function saveNote() {
-    const box = document.getElementById('diaryText');
-    if (!box) return;
-    const val = box.value.trim();
-    if (!val) return;
-
-    let list = JSON.parse(localStorage.getItem('my_notes') || '[]');
-    list.unshift({ text: val, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) });
-    localStorage.setItem('my_notes', JSON.stringify(list));
-
-    box.value = '';
-    loadNotes();
-
-    const stat = document.getElementById('statusText');
-    if (stat) {
-        stat.innerText = 'saved';
-        setTimeout(() => stat.innerText = 'ready', 1500);
+    if(minutes < 10) {
+        minutes="0" + minutes
     }
-}
 
-function loadNotes() {
-    let list = JSON.parse(localStorage.getItem('my_notes') || '[]');
-    const notesList = document.getElementById('notesList');
-    if (notesList) {
-        notesList.innerHTML = list.slice(0, 4).map(n => `<div class="note-item">${n.text}</div>`).join('');
+    if(seconds < 10) {
+        seconds="0" + seconds
     }
-}
 
-function setAlarm() {
-    const timeInput = document.getElementById('alarmInput');
-    if (!timeInput) return;
-    const time = timeInput.value;
-    if (!time) return;
-    window.alarmTime = time;
-    window.alarmOn = true;
-    const msg = document.getElementById('alarmMsg');
-    if (msg) msg.innerText = `alarm set for ${time}`;
-}
-
-let expr = '0';
-
-function refreshCalc() {
-    const screen = document.getElementById('calcScreen');
-    if (screen) screen.innerText = expr;
-}
-
-function pressKey(val) {
-    if (expr === '0' && val !== '.') {
-        expr = val;
-    } else {
-        expr += val;
+    if(day < 10) {
+        day="0" + day
     }
-    refreshCalc();
-}
 
-function pressAC() {
-    expr = '0';
-    refreshCalc();
-}
-
-function pressEq() {
-    try {
-        expr = eval(expr).toString();
-    } catch (err) {
-        expr = 'error';
+    if(month < 10) {
+        month="0" + month
     }
-    refreshCalc();
+
+    let currentTime = hours + ":" + minutes + ":" + seconds + " " + ampm
+    let currentDate = day + "/" + month + "/" + year
+
+    time.textContent = currentTime
+    date.textContent = currentDate
 }
 
-    
+setInterval(setTime,1000)
+setTime()
