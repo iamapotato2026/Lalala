@@ -2,72 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini OS Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,
+    initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-    <div class="wrapper">
-        <div class="card">
-            <div class="clock-box">
-                <div class="analog">
-                    <div class="hand hour" id="hHand"></div>
-                    <div class="hand minute" id="mHand"></div>
-                    <div class="hand second" id="sHand"></div>
-                    <div class="dot"></div>
-                </div>
-                <div class="digital" id="digClock">00:00:00</div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="diary">
-                <textarea id="diaryText" placeholder="jot down something..."></textarea>
-                <div class="diary-row">
-                    <span class="status-text" id="statusText">ready</span>
-                    <button onclick="saveNote()">add note</button>
-                </div>
-                <div class="notes-list" id="notesList"></div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="alarm-row">
-                <input type="time" id="alarmInput">
-                <button onclick="setAlarm()">set alarm</button>
-            </div>
-            <div class="alarm-msg" id="alarmMsg"></div>
+    <div class="container">
+        <div id="digital-clock">
+            <div id="time"></div>
+            <div id="date"></div>
         </div>
     </div>
-
-    <div class="calc">
-        <div class="calc-screen" id="calcScreen">0</div>
-        <div class="calc-pad">
-            <button class="btn ac" onclick="pressAC()">ac</button>
-            <button class="btn op" onclick="pressKey('/')">/</button>
-            <button class="btn op" onclick="pressKey('*')">*</button>
-            <button class="btn op" onclick="pressKey('-')">-</button>
-
-            <button class="btn" onclick="pressKey('7')">7</button>
-            <button class="btn" onclick="pressKey('8')">8</button>
-            <button class="btn" onclick="pressKey('9')">9</button>
-            <button class="btn op" onclick="pressKey('+')">+</button>
-
-            <button class="btn" onclick="pressKey('4')">4</button>
-            <button class="btn" onclick="pressKey('5')">5</button>
-            <button class="btn" onclick="pressKey('6')">6</button>
-            <button class="btn eq" onclick="pressEq()">=</button>
-
-            <button class="btn" onclick="pressKey('1')">1</button>
-            <button class="btn" onclick="pressKey('2')">2</button>
-            <button class="btn" onclick="pressKey('3')">3</button>
-
-            <button class="btn" onclick="pressKey('0')" style="grid-column: span 2;">0</button>
-            <button class="btn" onclick="pressKey('.')">.</button>
-        </div>
-    </div>
-
     <script src="script.js"></script>
 </body>
 </html>
+
